@@ -6,14 +6,18 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
 
-let sequelize;
-if (config.development) {
-  sequelize = new Sequelize(process.env[config.development]);
-} else {
-  sequelize = new Sequelize(
-    config.database, config.username, config.password, config
-  );
-}
+const configDb = {
+  username: "kevin",
+  password: "rahasia",
+  database: "kevin",
+  host: "yb-tservers.yb-operator.svc.cluster.local",
+  port: 5433,
+  dialect: "postgres"
+};
+
+let sequelize = new Sequelize(
+  "kevin", "kevin", "rahasia", configDb
+);
 
 fs
   .readdirSync(__dirname)
